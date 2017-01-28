@@ -1,0 +1,14 @@
+{% include "header.html" %}
+
+{% if all_tasks %}
+    <h1>List of all Tasks:</h1>
+<ul>
+    {% for task in all_tasks %}
+    <li><a href="{% url "task-view" task.id %}">{{ task.name }}</a> </li>
+    {% endfor %}
+</ul>
+{% else %}
+    <h2>There are no tasks yet</h2>
+{% endif %}
+
+{% include "footer.html" %}

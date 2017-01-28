@@ -17,6 +17,11 @@ def task_view(request,task_id):
            'ball_number': 42,
     })
 
+def task_list(request):
+    all_tasks = models.Task.objects.all()
+    context = {'all_tasks': all_tasks}
+    return render(request, 'tasks/list.html', context)
+
 def task_next(request,ball_number = None):
     task = get_next_task()
     if task is not None:

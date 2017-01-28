@@ -21,7 +21,7 @@ from tasks import views as task
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^ball$',task.task_next,name="task-ball-next"),
-    url(r'^task/list$', task.task_next,name="task-list"),
+    url(r'^task/list$', task.task_list,name="task-list"),
     url(r'^task/next$',task.task_next,name="task-next"),
     url(r'^task/(?P<task_id>[0-9]+)/$',task.task_view,name="task-view"),
     url(r'^task/(?P<task_id>[0-9]+)/noneed$', task.task_noneed, name="task-noneed"),
