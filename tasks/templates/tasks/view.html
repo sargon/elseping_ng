@@ -1,18 +1,20 @@
 {% include "header.html" %}
 {% if ball_number %}
-  Du hast den Ball <strong>#{{ ball_number }}</strong> gezogen, die folgende Aufgabe wurde dir zugeteilt.
+		<div id="ui-bar-test" class="ui-bar ui-bar-a ui-corner-all" style="margin-bottom:1em;">
+		<p>Du hast den Ball <strong>#{{ ball_number }}</strong> gezogen, dir wird folgende Aufgabe zugeteilt.</p>
+		</div>
 {% endif %}
 <p>
-    Aufgabe <strong> #{{ task.id }} </strong> <b>{{ task.name }}</b>
+    Aufgabe <strong> #{{ task.id }} "{{ task.name }}"</strong>
     wurde zuletzt am {{ task.last_complete }} erledigt.
     <pre>
         {{ task.description }}
     </pre>
 </p>
-<div>
-    <a href="{% url "task-complete" task_id=task.id %}">erledigt</a>
-    <a href="{% url "task-noneed" task_id=task.id %}">unnötig</a>
-</div>
+    <a href="{% url "task-complete" task_id=task.id %}" class="ui-btn ui-corner-all ui-shadow ui-icon-gear ui-btn-icon-left ui-btn-active">Aufgabe durchgeführt</a>
+{% if task.is_needed %}
+    <a href="{% url "task-noneed" task_id=task.id %}" class="ui-btn ui-corner-all ui-shadow ui-icon-gear ui-btn-icon-left ui-btn-active">Aufgabe ist aktuell unnötig</a>
+{% endif %}
 <p>
     <ul>
         <li>{{ task.id }}</li>
