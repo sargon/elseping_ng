@@ -1,6 +1,12 @@
 {% include "header.html" %}
-{% if next_task is not None %}
-{{ next_task.name }}
+{% if next_task %}
+  {%if ball_number %} Ball: {{ ball_number }} {% endif %}
+<ul>
+    <li>{{ next_task.id }}</li>
+    <li>{{ next_task.name }}</li>
+    <li>{{ next_task.description }}</li>
+    <li>{{ next_task.repeat_factor }} / {{ next_task.max_repeat_factor }}</li>
+</ul>
 {% else %}
 Keine Aufgabe
 {% endif %}

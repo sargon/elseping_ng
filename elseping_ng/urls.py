@@ -20,6 +20,7 @@ from tasks import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^select$',views.select,name="task-select"),
+    url(r'^ball$',views.select,name="task-ball-next"),
+    url(r'^next$',views.select,name="task-next"),
     url(r'^$',views.index)
 ]
