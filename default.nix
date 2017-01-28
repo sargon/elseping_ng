@@ -4,7 +4,6 @@ with import <nixpkgs> {}; {
     buildInputs = [ stdenv 
                     python35
                   ];
-    LIBRARY_PATH="${libxml2}/lib";
     shellHook = ''
       pip3 install --user django
       pip3 install --user db-sqlite3

@@ -6,7 +6,7 @@ class Task(models.Model):
     name = models.CharField(max_length=250)
     description = models.TextField()
     # Last time task has been completed
-    last_complete = models.DateTimeField()
+    last_complete = models.DateTimeField(default="1970-01-01 00:00:00")
     # Current repeating factor
     repeat_factor = models.PositiveIntegerField()
     # Maximal repeating factor 
