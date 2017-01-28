@@ -19,6 +19,20 @@ class Task(models.Model):
         timedelta = datetime.timedelta(days=self.repeat_factor)
         return self.last_complete + timedelta
 
+    def is_needed(self):
+        return now() > self.get_next_repeat()
+
+    def increase_factor(self):
+        self.repeat_factor += 1
+        if self.repeat_factor > self.max_repeat_factor:
+            self.repeat_factor = self.max_repeat_factor
+
+    def decrease_factor(self):
+        self.repeat_factor -= 1
+        if self.repeat_factor < 1:
+            self.repeat_factor = 1
+
+
     def save(self, *args, **kwargs):
         self.next_repeat = self.get_next_repeat()
         super(Task,self).save(*args, **kwargs)

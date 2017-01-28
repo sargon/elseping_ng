@@ -16,11 +16,15 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from tasks import views
+from tasks import views as task
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^ball$',views.select,name="task-ball-next"),
-    url(r'^next$',views.select,name="task-next"),
-    url(r'^$',views.index)
+    url(r'^ball$',task.task_next,name="task-ball-next"),
+    url(r'^task/list$', task.task_next,name="task-list"),
+    url(r'^task/next$',task.task_next,name="task-next"),
+    url(r'^task/(?P<task_id>[0-9]+)/$',task.task_view,name="task-view"),
+    url(r'^task/(?P<task_id>[0-9]+)/noneed$', task.task_noneed, name="task-noneed"),
+    url(r'^task/(?P<task_id>[0-9]+)/complete$',task.task_complete,name="task-complete"),
+    url(r'^$',task.index)
 ]

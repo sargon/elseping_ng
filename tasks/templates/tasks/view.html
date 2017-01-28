@@ -1,0 +1,25 @@
+{% include "header.html" %}
+{% if ball_number %}
+  Du hast den Ball <strong>#{{ ball_number }}</strong> gezogen, die folgende Aufgabe wurde dir zugeteilt.
+{% endif %}
+<p>
+    Aufgabe <strong> #{{ task.id }} </strong> <b>{{ task.name }}</b>
+    wurde zuletzt am {{ task.last_complete }} erledigt.
+    <pre>
+        {{ task.description }}
+    </pre>
+</p>
+<div>
+    <a href="{% url "task-complete" task_id=task.id %}">erledigt</a>
+    <a href="{% url "task-noneed" task_id=task.id %}">unnötig</a>
+</div>
+<p>
+    <ul>
+        <li>{{ task.id }}</li>
+        <li>{{ task.name }}</li>
+        <li>{{ task.description }}</li>
+        <li>{{ task.repeat_factor }} / {{ task.max_repeat_factor }}</li>
+    </ul>
+</p>
+{% include "footer.html" %}
+
