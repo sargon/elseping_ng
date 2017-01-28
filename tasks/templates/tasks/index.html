@@ -1,5 +1,12 @@
-<form action="{% url 'task-select' %}" method="POST">
-  {% csrf_token %}
-  <input type="text" name="ball_number"/>
-  <button type="submit"/>
-</form>
+{% include "header.html" %}
+
+    <a href="{% url 'task-select' %}">Irgendeine Aufgabe</a>
+
+    <form action="{% url 'task-select' %}" method="POST">
+        {% csrf_token %}
+        <label for="ball_number" data-clear-btn="false">Ball Nummer:</label>
+        <input type="number" name="ball_number" id="ball_number" value="">
+        <input value="Ok" type="submit">
+    </form>
+
+{% include "footer.html" %}

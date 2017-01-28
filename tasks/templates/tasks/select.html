@@ -1,2 +1,8 @@
+{% include "header.html" %}
+{% if next_task is not None %}
 {{ next_task.name }}
+{% else %}
+Keine Aufgabe
+{% endif %}
+{% include "footer.html" %}
 

@@ -18,4 +18,7 @@ def select(request):
             'next_task': next_task
         })
     else:
-        return HttpResponse("No task found")
+        return render(request, "tasks/select.html", context={
+            'next_task': None
+        })
+
