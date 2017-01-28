@@ -6,22 +6,16 @@
 {% endif %}
 <p>
     Aufgabe <strong> #{{ task.id }} "{{ task.name }}"</strong>
-    wurde zuletzt am {{ task.last_complete }} erledigt.
+    wurde zuletzt am {{ task.last_complete }} erledigt und soll alle {{ task.repeat_factor }} Tage wiederholt werden.
     <pre>
         {{ task.description }}
     </pre>
 </p>
+{% if task.repeat_factor > 1 %}
     <a href="{% url "task-complete" task_id=task.id %}" class="ui-btn ui-corner-all ui-shadow ui-icon-gear ui-btn-icon-left ui-btn-active">Aufgabe durchgeführt</a>
+{% endif %}
 {% if task.is_needed %}
     <a href="{% url "task-noneed" task_id=task.id %}" class="ui-btn ui-corner-all ui-shadow ui-icon-gear ui-btn-icon-left ui-btn-active">Aufgabe ist aktuell unnötig</a>
 {% endif %}
-<p>
-    <ul>
-        <li>{{ task.id }}</li>
-        <li>{{ task.name }}</li>
-        <li>{{ task.description }}</li>
-        <li>{{ task.repeat_factor }} / {{ task.max_repeat_factor }}</li>
-    </ul>
-</p>
 {% include "footer.html" %}
 

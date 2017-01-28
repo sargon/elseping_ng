@@ -1,6 +1,8 @@
 {% include "header.html" %}
-
-    <a href="{% url 'task-next' %}">Irgendeine Aufgabe</a>
+    <p>
+        <a href="{% url 'task-next' %}">Nächste Aufgabe</a>
+        <a href="{% url 'task-list' %}">Liste aller Aufgaben</a>
+    </p>
 
     <form action="{% url 'task-ball-next' %}" method="POST">
         {% csrf_token %}
