@@ -1,7 +1,8 @@
 {% include "header.html" %}
 <p>
     Es gibt aktuell keine zu erledigende Aufgaben. Wenn du willst erledige doch etwas was
-    getan werden müsste und markiere diese Aufgabe in der <a href="{% url "task-list" %}">Liste</a>. Dadurch verbesserst du
+    getan werden müsste und markiere diese Aufgabe in der Liste. Dadurch verbesserst du
     den Raum-Zustand und hilfst mich zu verbessern.
 </p>
+<a href="{% url "task-list" %}" class="ui-btn ui-corner-all ui-shadow  ui-btn-active">Liste</a>
 {% include "footer.html" %}

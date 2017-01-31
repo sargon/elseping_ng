@@ -1,0 +1,6 @@
+.ui-content {
+    background: url("else_background_mobile.png") !important;
+    background-repeat:repeat !important;
+    background-position:center center !important;
+    background-size: contain !important;
+}

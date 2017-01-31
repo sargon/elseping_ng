@@ -14,7 +14,7 @@ def task_view(request,task_id):
     task = models.Task.objects.get(id=task_id)
     return render(request,"tasks/view.html",context={
             'task': task,
-           'ball_number': 42,
+            'ball_number': 42,
     })
 
 def task_list(request):
@@ -22,8 +22,9 @@ def task_list(request):
     context = {'all_tasks': all_tasks}
     return render(request, 'tasks/list.html', context)
 
-def task_next(request,ball_number = None):
+def task_next(request):
     task = get_next_task()
+
     if task is not None:
         task_id = task.id
         return HttpResponseRedirect(reverse(task_view, args=(task_id,)))
