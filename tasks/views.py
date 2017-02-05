@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.urls import reverse
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.db.models.functions import Now
 from django.utils.timezone import now
+from datetime import *
+
 
 from . import models
 
@@ -19,12 +21,32 @@ def task_view(request,task_id):
 
 def task_list(request):
     all_tasks = models.Task.objects.all()
-    context = {'all_tasks': all_tasks}
-    return render(request, 'tasks/list.html', context)
+    tasks_today = []
+    tasks_tomorrow = []
+    tasks_this_week = []
+    tasks_this_month = []
+    today = datetime.now().timetuple().tm_yday
+    # sorting tasks, beginning with most likely
+    for task in all_tasks:
+        assert task.repeat_factor <= 30
+        if task.next_repeat.timetuple().tm_yday <= today:
+            tasks_today.append(task)
+        elif task.next_repeat.timetuple().tm_yday == today + 1:
+            tasks_tomorrow.append(task)
+        elif task.next_repeat.timetuple().tm_yday <= today + 7:
+            tasks_this_week.append(task)
+        else:
+            tasks_this_month.append(task)
+    # passing to list.html, where magic happens
+    return render(request, 'tasks/list.html', context={
+        'tasks_today': tasks_today,
+        'tasks_tomorrow': tasks_tomorrow,
+        'tasks_this_week': tasks_this_week,
+        'tasks_this_month': tasks_this_month,
+    })
 
 def task_next(request):
     task = get_next_task()
-
     if task is not None:
         task_id = task.id
         return HttpResponseRedirect(reverse(task_view, args=(task_id,)))
