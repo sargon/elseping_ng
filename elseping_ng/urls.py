@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^task/list$', task.task_list,name="task-list"),
     url(r'^task/next$',task.task_next,name="task-next"),
     url(r'^task/(?P<task_id>[0-9]+)/$',task.task_view,name="task-view"),
+    url(r'^task/(?P<task_id>[0-9]+)/(?P<ball_id>[0-9]{1,2})/$',task.task_view_ball,name="task-view"),
     url(r'^task/(?P<task_id>[0-9]+)/noneed$', task.task_noneed, name="task-noneed"),
     url(r'^task/(?P<task_id>[0-9]+)/complete$',task.task_complete,name="task-complete"),
     url(r'^$',task.index)
